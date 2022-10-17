@@ -3,6 +3,29 @@
 	<persistence-unit name="ProyectoEJB">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/ProyectoDS</jta-data-source>
+		<class>model.AccionConstancia</class>
+		<class>model.AccionJustificacion</class>
+		<class>model.AccionReclamo</class>
+		<class>model.Analista</class>
+		<class>model.Area</class>
+		<class>model.AsistEstEvto</class>
+		<class>model.Constancia</class>
+		<class>model.Departamento</class>
+		<class>model.EstadosEvento</class>
+		<class>model.EstadosRecConJus</class>
+		<class>model.Estudiante</class>
+		<class>model.Evento</class>
+		<class>model.GestAnalistaEvto</class>
+		<class>model.Itr</class>
+		<class>model.Justificacion</class>
+		<class>model.Localidad</class>
+		<class>model.Modalidad</class>
+		<class>model.Reclamo</class>
+		<class>model.RespTutorEvto</class>
+		<class>model.TiposConstancia</class>
+		<class>model.TiposEvento</class>
+		<class>model.Tutor</class>
+		<class>model.Usuario</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
