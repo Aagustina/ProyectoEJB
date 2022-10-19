@@ -3,29 +3,29 @@
 	<persistence-unit name="ProyectoEJB">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/ProyectoDS</jta-data-source>
-		<class>model.AccionConstancia</class>
-		<class>model.AccionJustificacion</class>
-		<class>model.AccionReclamo</class>
-		<class>model.Analista</class>
-		<class>model.Area</class>
-		<class>model.AsistEstEvto</class>
-		<class>model.Constancia</class>
-		<class>model.Departamento</class>
-		<class>model.EstadosEvento</class>
-		<class>model.EstadosRecConJus</class>
-		<class>model.Estudiante</class>
-		<class>model.Evento</class>
-		<class>model.GestAnalistaEvto</class>
-		<class>model.Itr</class>
-		<class>model.Justificacion</class>
-		<class>model.Localidad</class>
-		<class>model.Modalidad</class>
-		<class>model.Reclamo</class>
-		<class>model.RespTutorEvto</class>
-		<class>model.TiposConstancia</class>
-		<class>model.TiposEvento</class>
-		<class>model.Tutor</class>
-		<class>model.Usuario</class>
+		<class>com.tix.modelo.entidades.AccionConstancia</class>
+		<class>com.tix.modelo.entidades.AccionJustificacion</class>
+		<class>com.tix.modelo.entidades.AccionReclamo</class>
+		<class>com.tix.modelo.entidades.Analista</class>
+		<class>com.tix.modelo.entidades.Area</class>
+		<class>com.tix.modelo.entidades.AsistEstEvto</class>
+		<class>com.tix.modelo.entidades.Constancia</class>
+		<class>com.tix.modelo.entidades.Departamento</class>
+		<class>com.tix.modelo.entidades.EstadosEvento</class>
+		<class>com.tix.modelo.entidades.EstadosRecConJus</class>
+		<class>com.tix.modelo.entidades.Estudiante</class>
+		<class>com.tix.modelo.entidades.Evento</class>
+		<class>com.tix.modelo.entidades.GestAnalistaEvto</class>
+		<class>com.tix.modelo.entidades.Itr</class>
+		<class>com.tix.modelo.entidades.Justificacion</class>
+		<class>com.tix.modelo.entidades.Localidad</class>
+		<class>com.tix.modelo.entidades.Modalidad</class>
+		<class>com.tix.modelo.entidades.Reclamo</class>
+		<class>com.tix.modelo.entidades.RespTutorEvto</class>
+		<class>com.tix.modelo.entidades.TiposConstancia</class>
+		<class>com.tix.modelo.entidades.TiposEvento</class>
+		<class>com.tix.modelo.entidades.Tutor</class>
+		<class>com.tix.modelo.entidades.Usuario</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

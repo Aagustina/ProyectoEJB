@@ -1,4 +1,4 @@
-package model;
+package com.tix.modelo.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
