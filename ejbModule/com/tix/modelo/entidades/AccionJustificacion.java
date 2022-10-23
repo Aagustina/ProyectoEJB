@@ -1,45 +1,51 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the ACCION_JUSTIFICACIONES database table.
- * 
+ * Entity implementation class for Entity: Accion_Justificacion
+ *
  */
 @Entity
-@Table(name="ACCION_JUSTIFICACIONES")
-@NamedQuery(name="AccionJustificacion.findAll", query="SELECT a FROM AccionJustificacion a")
+@Table(name = "ACCION_JUSTIFICACIONES")
+@NamedQuery(name = "AccionJustificacion.findAll", query = "SELECT a FROM AccionJustificacion a")
 public class AccionJustificacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ACCION_JUSTIFICACIONES_IDACCJUSTIFICACION_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACCION_JUSTIFICACIONES_IDACCJUSTIFICACION_GENERATOR")
-	@Column(name="ID_ACC_JUSTIFICACION")
+	@SequenceGenerator(name = "SEQ_ID_ACC_JUSTF")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_ACC_JUSTF")
+	@Column(name = "ID_ACC_JUSTIFICACION")
 	private long idAccJustificacion;
 
+	@Column(length = 500)
 	private String detalle;
 
+	@Column(nullable = false)
 	private Timestamp fechahora;
-
-	//bi-directional many-to-one association to Analista
+	
 	@ManyToOne
 	@JoinColumn(name="ID_ANALISTA")
 	private Analista analista;
 
-	//bi-directional many-to-one association to Justificacione
 	@ManyToOne
 	@JoinColumn(name="ID_JUSTIFICACION")
-	private Justificacion justificacione;
-
-	public AccionJustificacion() {
-	}
+	private Justificacion justificacion;
 
 	public long getIdAccJustificacion() {
-		return this.idAccJustificacion;
+		return idAccJustificacion;
 	}
 
 	public void setIdAccJustificacion(long idAccJustificacion) {
@@ -47,7 +53,7 @@ public class AccionJustificacion implements Serializable {
 	}
 
 	public String getDetalle() {
-		return this.detalle;
+		return detalle;
 	}
 
 	public void setDetalle(String detalle) {
@@ -55,27 +61,11 @@ public class AccionJustificacion implements Serializable {
 	}
 
 	public Timestamp getFechahora() {
-		return this.fechahora;
+		return fechahora;
 	}
 
 	public void setFechahora(Timestamp fechahora) {
 		this.fechahora = fechahora;
-	}
-
-	public Analista getAnalista() {
-		return this.analista;
-	}
-
-	public void setAnalista(Analista analista) {
-		this.analista = analista;
-	}
-
-	public Justificacion getJustificacione() {
-		return this.justificacione;
-	}
-
-	public void setJustificacione(Justificacion justificacione) {
-		this.justificacione = justificacione;
 	}
 
 }

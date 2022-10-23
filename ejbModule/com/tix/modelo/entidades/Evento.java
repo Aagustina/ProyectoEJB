@@ -1,82 +1,82 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the EVENTOS database table.
- * 
+ * Entity implementation class for Entity: Evento
+ *
  */
 @Entity
-@Table(name="EVENTOS")
-@NamedQuery(name="Evento.findAll", query="SELECT e FROM Evento e")
+@Table(name = "EVENTOS")
+@NamedQuery(name = "Evento.findAll", query = "SELECT e FROM Evento e")
 public class Evento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="EVENTOS_IDEVENTO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EVENTOS_IDEVENTO_GENERATOR")
-	@Column(name="ID_EVENTO")
+	@SequenceGenerator(name = "SEQ_ID_EVTO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_EVTO")
+	@Column(name = "ID_EVENTO")
 	private long idEvento;
 
-	@Column(name="FECHAHORA_FIN")
+	@Column(name = "FECHAHORA_FIN", nullable = false)
 	private Timestamp fechahoraFin;
 
-	@Column(name="FECHAHORA_INICIO")
+	@Column(name = "FECHAHORA_INICIO", nullable = false)
 	private Timestamp fechahoraInicio;
 
+	@Column(length = 100)
 	private String localizacion;
 
+	@Column(nullable = false, length = 250)
 	private String titulo;
 
-	//bi-directional many-to-one association to AsistEstEvto
-	@OneToMany(mappedBy="evento")
+	@OneToMany(mappedBy = "evento")
 	private List<AsistEstEvto> asistEstEvtos;
 
-	//bi-directional many-to-one association to Constancia
-	@OneToMany(mappedBy="evento")
+	@OneToMany(mappedBy = "evento")
 	private List<Constancia> constancias;
 
-	//bi-directional many-to-one association to EstadosEvento
 	@ManyToOne
-	@JoinColumn(name="ID_ESTADO")
-	private EstadosEvento estadosEvento;
+	@JoinColumn(name = "ID_ESTADO_EVENTO")
+	private EstadoEvento estadoEvento;
 
-	//bi-directional many-to-one association to Itr
 	@ManyToOne
-	@JoinColumn(name="ID_ITR")
+	@JoinColumn(name = "ID_ITR")
 	private Itr itr;
 
-	//bi-directional many-to-one association to Modalidade
 	@ManyToOne
-	@JoinColumn(name="ID_MODALIDAD")
-	private Modalidad modalidade;
+	@JoinColumn(name = "ID_MODALIDAD")
+	private Modalidad modalidad;
 
-	//bi-directional many-to-one association to TiposEvento
 	@ManyToOne
-	@JoinColumn(name="ID_TIPO_EVENTO")
-	private TiposEvento tiposEvento;
+	@JoinColumn(name = "ID_TIPO_EVENTO")
+	private TipoEvento tipoEvento;
 
-	//bi-directional many-to-one association to GestAnalistaEvto
-	@OneToMany(mappedBy="evento")
+	@OneToMany(mappedBy = "evento")
 	private List<GestAnalistaEvto> gestAnalistaEvtos;
 
-	//bi-directional many-to-one association to Justificacione
-	@OneToMany(mappedBy="evento")
+	@OneToMany(mappedBy = "evento")
 	private List<Justificacion> justificaciones;
 
-	//bi-directional many-to-one association to RespTutorEvto
-	@OneToMany(mappedBy="evento")
+	@OneToMany(mappedBy = "evento")
 	private List<RespTutorEvto> respTutorEvtos;
 
-	public Evento() {
-	}
-
 	public long getIdEvento() {
-		return this.idEvento;
+		return idEvento;
 	}
 
 	public void setIdEvento(long idEvento) {
@@ -84,7 +84,7 @@ public class Evento implements Serializable {
 	}
 
 	public Timestamp getFechahoraFin() {
-		return this.fechahoraFin;
+		return fechahoraFin;
 	}
 
 	public void setFechahoraFin(Timestamp fechahoraFin) {
@@ -92,7 +92,7 @@ public class Evento implements Serializable {
 	}
 
 	public Timestamp getFechahoraInicio() {
-		return this.fechahoraInicio;
+		return fechahoraInicio;
 	}
 
 	public void setFechahoraInicio(Timestamp fechahoraInicio) {
@@ -100,7 +100,7 @@ public class Evento implements Serializable {
 	}
 
 	public String getLocalizacion() {
-		return this.localizacion;
+		return localizacion;
 	}
 
 	public void setLocalizacion(String localizacion) {
@@ -108,153 +108,11 @@ public class Evento implements Serializable {
 	}
 
 	public String getTitulo() {
-		return this.titulo;
+		return titulo;
 	}
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public List<AsistEstEvto> getAsistEstEvtos() {
-		return this.asistEstEvtos;
-	}
-
-	public void setAsistEstEvtos(List<AsistEstEvto> asistEstEvtos) {
-		this.asistEstEvtos = asistEstEvtos;
-	}
-
-	public AsistEstEvto addAsistEstEvto(AsistEstEvto asistEstEvto) {
-		getAsistEstEvtos().add(asistEstEvto);
-		asistEstEvto.setEvento(this);
-
-		return asistEstEvto;
-	}
-
-	public AsistEstEvto removeAsistEstEvto(AsistEstEvto asistEstEvto) {
-		getAsistEstEvtos().remove(asistEstEvto);
-		asistEstEvto.setEvento(null);
-
-		return asistEstEvto;
-	}
-
-	public List<Constancia> getConstancias() {
-		return this.constancias;
-	}
-
-	public void setConstancias(List<Constancia> constancias) {
-		this.constancias = constancias;
-	}
-
-	public Constancia addConstancia(Constancia constancia) {
-		getConstancias().add(constancia);
-		constancia.setEvento(this);
-
-		return constancia;
-	}
-
-	public Constancia removeConstancia(Constancia constancia) {
-		getConstancias().remove(constancia);
-		constancia.setEvento(null);
-
-		return constancia;
-	}
-
-	public EstadosEvento getEstadosEvento() {
-		return this.estadosEvento;
-	}
-
-	public void setEstadosEvento(EstadosEvento estadosEvento) {
-		this.estadosEvento = estadosEvento;
-	}
-
-	public Itr getItr() {
-		return this.itr;
-	}
-
-	public void setItr(Itr itr) {
-		this.itr = itr;
-	}
-
-	public Modalidad getModalidade() {
-		return this.modalidade;
-	}
-
-	public void setModalidade(Modalidad modalidade) {
-		this.modalidade = modalidade;
-	}
-
-	public TiposEvento getTiposEvento() {
-		return this.tiposEvento;
-	}
-
-	public void setTiposEvento(TiposEvento tiposEvento) {
-		this.tiposEvento = tiposEvento;
-	}
-
-	public List<GestAnalistaEvto> getGestAnalistaEvtos() {
-		return this.gestAnalistaEvtos;
-	}
-
-	public void setGestAnalistaEvtos(List<GestAnalistaEvto> gestAnalistaEvtos) {
-		this.gestAnalistaEvtos = gestAnalistaEvtos;
-	}
-
-	public GestAnalistaEvto addGestAnalistaEvto(GestAnalistaEvto gestAnalistaEvto) {
-		getGestAnalistaEvtos().add(gestAnalistaEvto);
-		gestAnalistaEvto.setEvento(this);
-
-		return gestAnalistaEvto;
-	}
-
-	public GestAnalistaEvto removeGestAnalistaEvto(GestAnalistaEvto gestAnalistaEvto) {
-		getGestAnalistaEvtos().remove(gestAnalistaEvto);
-		gestAnalistaEvto.setEvento(null);
-
-		return gestAnalistaEvto;
-	}
-
-	public List<Justificacion> getJustificaciones() {
-		return this.justificaciones;
-	}
-
-	public void setJustificaciones(List<Justificacion> justificaciones) {
-		this.justificaciones = justificaciones;
-	}
-
-	public Justificacion addJustificacione(Justificacion justificacione) {
-		getJustificaciones().add(justificacione);
-		justificacione.setEvento(this);
-
-		return justificacione;
-	}
-
-	public Justificacion removeJustificacione(Justificacion justificacione) {
-		getJustificaciones().remove(justificacione);
-		justificacione.setEvento(null);
-
-		return justificacione;
-	}
-
-	public List<RespTutorEvto> getRespTutorEvtos() {
-		return this.respTutorEvtos;
-	}
-
-	public void setRespTutorEvtos(List<RespTutorEvto> respTutorEvtos) {
-		this.respTutorEvtos = respTutorEvtos;
-	}
-
-	public RespTutorEvto addRespTutorEvto(RespTutorEvto respTutorEvto) {
-		getRespTutorEvtos().add(respTutorEvto);
-		respTutorEvto.setEvento(this);
-
-		return respTutorEvto;
-	}
-
-	public RespTutorEvto removeRespTutorEvto(RespTutorEvto respTutorEvto) {
-		getRespTutorEvtos().remove(respTutorEvto);
-		respTutorEvto.setEvento(null);
-
-		return respTutorEvto;
 	}
 
 }

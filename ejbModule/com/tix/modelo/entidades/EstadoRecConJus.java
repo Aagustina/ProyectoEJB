@@ -14,20 +14,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Entity implementation class for Entity: Modalidad
+ * Entity implementation class for Entity: EstadoRecConJus
  *
  */
 @Entity
-@Table(name = "MODALIDADES")
-@NamedQuery(name = "Modalidad.findAll", query = "SELECT m FROM Modalidad m")
-public class Modalidad implements Serializable {
+@Table(name = "ESTADOS_REC_CON_JUS")
+@NamedQuery(name = "EstadoRecConJus.findAll", query = "SELECT e FROM EstadoRecConJus e")
+public class EstadoRecConJus implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "SEQ_ID_MOD")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_MOD")
-	@Column(name = "ID_MODALIDAD")
-	private long idModalidad;
+	@SequenceGenerator(name = "SEQ_ID_EST_RCJ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_EST_RCJ")
+	@Column(name = "ID_ESTADOS_REC_CON_JUS")
+	private long idEstadosRecConJus;
 
 	@Column(nullable = false)
 	private int estado;
@@ -35,15 +35,21 @@ public class Modalidad implements Serializable {
 	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	@OneToMany(mappedBy = "modalidad")
-	private List<Evento> eventos;
+	@OneToMany(mappedBy = "estadoRecConJus")
+	private List<Constancia> constancias;
 
-	public long getIdModalidad() {
-		return idModalidad;
+	@OneToMany(mappedBy = "estadoRecConJus")
+	private List<Justificacion> justificaciones;
+
+	@OneToMany(mappedBy = "estadoRecConJus")
+	private List<Reclamo> reclamos;
+
+	public long getIdEstadosRecConJus() {
+		return idEstadosRecConJus;
 	}
 
-	public void setIdModalidad(long idModalidad) {
-		this.idModalidad = idModalidad;
+	public void setIdEstadosRecConJus(long idEstadosRecConJus) {
+		this.idEstadosRecConJus = idEstadosRecConJus;
 	}
 
 	public int getEstado() {

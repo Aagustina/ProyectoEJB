@@ -14,20 +14,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Entity implementation class for Entity: Modalidad
+ * Entity implementation class for Entity: EstadoEvento
  *
  */
 @Entity
-@Table(name = "MODALIDADES")
-@NamedQuery(name = "Modalidad.findAll", query = "SELECT m FROM Modalidad m")
-public class Modalidad implements Serializable {
+@Table(name = "ESTADOS_EVENTOS")
+@NamedQuery(name = "EstadoEvento.findAll", query = "SELECT e FROM EstadoEvento e")
+public class EstadoEvento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "SEQ_ID_MOD")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_MOD")
-	@Column(name = "ID_MODALIDAD")
-	private long idModalidad;
+	@SequenceGenerator(name = "SEQ_ID_EST_EVTO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_EST_EVTO")
+	@Column(name = "ID_ESTADO_EVENTO")
+	private long idEstadoEvento;
 
 	@Column(nullable = false)
 	private int estado;
@@ -35,15 +35,15 @@ public class Modalidad implements Serializable {
 	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	@OneToMany(mappedBy = "modalidad")
+	@OneToMany(mappedBy = "estadoEvento")
 	private List<Evento> eventos;
 
-	public long getIdModalidad() {
-		return idModalidad;
+	public long getIdEstadoEvento() {
+		return idEstadoEvento;
 	}
 
-	public void setIdModalidad(long idModalidad) {
-		this.idModalidad = idModalidad;
+	public void setIdEstadoEvento(long idEstadoEvento) {
+		this.idEstadoEvento = idEstadoEvento;
 	}
 
 	public int getEstado() {

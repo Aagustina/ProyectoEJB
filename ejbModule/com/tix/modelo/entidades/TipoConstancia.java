@@ -14,20 +14,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Entity implementation class for Entity: Modalidad
+ * Entity implementation class for Entity: TipoConstancia
  *
  */
 @Entity
-@Table(name = "MODALIDADES")
-@NamedQuery(name = "Modalidad.findAll", query = "SELECT m FROM Modalidad m")
-public class Modalidad implements Serializable {
+@Table(name = "TIPOS_CONSTANCIAS")
+@NamedQuery(name = "TipoConstancia.findAll", query = "SELECT t FROM TipoConstancia t")
+public class TipoConstancia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "SEQ_ID_MOD")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_MOD")
-	@Column(name = "ID_MODALIDAD")
-	private long idModalidad;
+	@SequenceGenerator(name = "SEQ_ID_TPO_CONST")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_TPO_CONST")
+	@Column(name = "ID_TIPO_CONSTANCIA")
+	private long idTipoConstancia;
 
 	@Column(nullable = false)
 	private int estado;
@@ -35,15 +35,15 @@ public class Modalidad implements Serializable {
 	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	@OneToMany(mappedBy = "modalidad")
-	private List<Evento> eventos;
+	@OneToMany(mappedBy = "tipoConstancia")
+	private List<Constancia> constancias;
 
-	public long getIdModalidad() {
-		return idModalidad;
+	public long getIdTipoConstancia() {
+		return idTipoConstancia;
 	}
 
-	public void setIdModalidad(long idModalidad) {
-		this.idModalidad = idModalidad;
+	public void setIdTipoConstancia(long idTipoConstancia) {
+		this.idTipoConstancia = idTipoConstancia;
 	}
 
 	public int getEstado() {

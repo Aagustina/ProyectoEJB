@@ -1,45 +1,51 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the ACCION_RECLAMOS database table.
- * 
+ * Entity implementation class for Entity: AccionReclamo
+ *
  */
 @Entity
-@Table(name="ACCION_RECLAMOS")
-@NamedQuery(name="AccionReclamo.findAll", query="SELECT a FROM AccionReclamo a")
+@Table(name = "ACCION_RECLAMOS")
+@NamedQuery(name = "AccionReclamo.findAll", query = "SELECT a FROM AccionReclamo a")
 public class AccionReclamo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ACCION_RECLAMOS_IDACCRECLAMO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACCION_RECLAMOS_IDACCRECLAMO_GENERATOR")
-	@Column(name="ID_ACC_RECLAMO")
+	@SequenceGenerator(name = "SEQ_ID_ACC_RECL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_ACC_RECL")
+	@Column(name = "ID_ACC_RECLAMO")
 	private long idAccReclamo;
 
+	@Column(length = 500)
 	private String detalle;
 
+	@Column(nullable = false)
 	private Timestamp fechahora;
 
-	//bi-directional many-to-one association to Analista
 	@ManyToOne
-	@JoinColumn(name="ID_ANALISTA")
+	@JoinColumn(name = "ID_ANALISTA")
 	private Analista analista;
 
-	//bi-directional many-to-one association to Reclamo
 	@ManyToOne
-	@JoinColumn(name="ID_RECLAMO")
+	@JoinColumn(name = "ID_RECLAMO")
 	private Reclamo reclamo;
 
-	public AccionReclamo() {
-	}
-
 	public long getIdAccReclamo() {
-		return this.idAccReclamo;
+		return idAccReclamo;
 	}
 
 	public void setIdAccReclamo(long idAccReclamo) {
@@ -47,7 +53,7 @@ public class AccionReclamo implements Serializable {
 	}
 
 	public String getDetalle() {
-		return this.detalle;
+		return detalle;
 	}
 
 	public void setDetalle(String detalle) {
@@ -55,27 +61,11 @@ public class AccionReclamo implements Serializable {
 	}
 
 	public Timestamp getFechahora() {
-		return this.fechahora;
+		return fechahora;
 	}
 
 	public void setFechahora(Timestamp fechahora) {
 		this.fechahora = fechahora;
-	}
-
-	public Analista getAnalista() {
-		return this.analista;
-	}
-
-	public void setAnalista(Analista analista) {
-		this.analista = analista;
-	}
-
-	public Reclamo getReclamo() {
-		return this.reclamo;
-	}
-
-	public void setReclamo(Reclamo reclamo) {
-		this.reclamo = reclamo;
 	}
 
 }

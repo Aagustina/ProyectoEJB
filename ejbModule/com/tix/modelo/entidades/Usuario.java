@@ -1,172 +1,159 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- * The persistent class for the USUARIOS database table.
- * 
+ * Entity implementation class for Entity: Usuario
+ *
  */
 @Entity
-@Table(name="USUARIOS")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+@Table(name = "USUARIOS")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Usuario implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USUARIOS_IDUSUARIO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIOS_IDUSUARIO_GENERATOR")
-	@Column(name="ID_USUARIO")
+	@SequenceGenerator(name = "SEQ_ID_USR")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_USR")
+	@Column(name = "ID_USUARIO")
 	private long idUsuario;
 
-	private String apellido1;
-
-	private String apellido2;
-
-	private String contrasenia;
-
+	@Column(nullable = false, length = 50)
 	private String documento;
 
-	private BigDecimal estado;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="FECHA_NACIMIENTO")
-	private Date fechaNacimiento;
-
-	private String genero;
-
+	@Column(nullable = false, length = 70, unique = true)
 	private String mail;
 
-	@Column(name="MAIL_PERSONAL")
-	private String mailPersonal;
-
-	@Column(name="NOMBRE_USUARIO")
+	@Column(name = "NOMBRE_USUARIO", nullable = false, length = 50, unique = true)
 	private String nombreUsuario;
 
-	private String nombre1;
-
-	private String nombre2;
-
+	@Column(nullable = false, length = 20)
 	private String telefono;
 
-	//bi-directional one-to-one association to Analista
-	@OneToOne(mappedBy="usuario")
-	private Analista analista;
+	@Column(name = "MAIL_PERSONAL", nullable = false, length = 70)
+	private String mailPersonal;
 
-	//bi-directional one-to-one association to Estudiante
-	@OneToOne(mappedBy="usuario")
-	private Estudiante estudiante;
+	@Column(nullable = false, length = 25)
+	private String genero;
 
-	//bi-directional one-to-one association to Tutore
-	@OneToOne(mappedBy="usuario")
-	private Tutor tutore;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "FECHA_NACIMIENTO", nullable = false)
+	private Date fechaNacimiento;
 
-	//bi-directional many-to-one association to Itr
+	@Column(nullable = false, length = 50)
+	private String nombre1;
+
+	@Column(length = 50)
+	private String nombre2;
+
+	@Column(nullable = false, length = 50)
+	private String apellido1;
+
+	@Column(length = 50)
+	private String apellido2;
+
+	@Column(nullable = false, length = 50)
+	private String contrasenia;
+
+	@Column(nullable = false)
+	private int estado;
+
 	@ManyToOne
-	@JoinColumn(name="ID_ITR")
+	@JoinColumn(name = "ID_ITR")
 	private Itr itr;
 
-	//bi-directional many-to-one association to Localidade
 	@ManyToOne
-	@JoinColumn(name="LOCALIDAD")
-	private Localidad localidade;
+	@JoinColumn(name = "ID_LOCALIDAD")
+	private Localidad localidad;
 
 	public Usuario() {
+		super();
 	}
 
 	public long getIdUsuario() {
-		return this.idUsuario;
+		return idUsuario;
 	}
 
 	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getApellido1() {
-		return this.apellido1;
-	}
-
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-
-	public String getApellido2() {
-		return this.apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
-
-	public String getContrasenia() {
-		return this.contrasenia;
-	}
-
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
-
 	public String getDocumento() {
-		return this.documento;
+		return documento;
 	}
 
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
 
-	public BigDecimal getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(BigDecimal estado) {
-		this.estado = estado;
-	}
-
-	public Date getFechaNacimiento() {
-		return this.fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public String getGenero() {
-		return this.genero;
-	}
-
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
-
 	public String getMail() {
-		return this.mail;
+		return mail;
 	}
 
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
-	public String getMailPersonal() {
-		return this.mailPersonal;
-	}
-
-	public void setMailPersonal(String mailPersonal) {
-		this.mailPersonal = mailPersonal;
-	}
-
 	public String getNombreUsuario() {
-		return this.nombreUsuario;
+		return nombreUsuario;
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getMailPersonal() {
+		return mailPersonal;
+	}
+
+	public void setMailPersonal(String mailPersonal) {
+		this.mailPersonal = mailPersonal;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public String getNombre1() {
-		return this.nombre1;
+		return nombre1;
 	}
 
 	public void setNombre1(String nombre1) {
@@ -174,59 +161,43 @@ public class Usuario implements Serializable {
 	}
 
 	public String getNombre2() {
-		return this.nombre2;
+		return nombre2;
 	}
 
 	public void setNombre2(String nombre2) {
 		this.nombre2 = nombre2;
 	}
 
-	public String getTelefono() {
-		return this.telefono;
+	public String getApellido1() {
+		return apellido1;
 	}
 
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
 	}
 
-	public Analista getAnalista() {
-		return this.analista;
+	public String getApellido2() {
+		return apellido2;
 	}
 
-	public void setAnalista(Analista analista) {
-		this.analista = analista;
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
 	}
 
-	public Estudiante getEstudiante() {
-		return this.estudiante;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
-	public Tutor getTutore() {
-		return this.tutore;
+	public int getEstado() {
+		return estado;
 	}
 
-	public void setTutore(Tutor tutore) {
-		this.tutore = tutore;
-	}
-
-	public Itr getItr() {
-		return this.itr;
-	}
-
-	public void setItr(Itr itr) {
-		this.itr = itr;
-	}
-
-	public Localidad getLocalidade() {
-		return this.localidade;
-	}
-
-	public void setLocalidade(Localidad localidade) {
-		this.localidade = localidade;
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 }

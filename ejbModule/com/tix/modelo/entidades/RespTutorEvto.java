@@ -1,60 +1,48 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the RESP_TUTOR_EVTOS database table.
- * 
+ * Entity implementation class for Entity: RespTutorEvt
+ *
  */
 @Entity
-@Table(name="RESP_TUTOR_EVTOS")
-@NamedQuery(name="RespTutorEvto.findAll", query="SELECT r FROM RespTutorEvto r")
+@Table(name = "RESP_TUTOR_EVTOS")
+@NamedQuery(name = "RespTutorEvto.findAll", query = "SELECT r FROM RespTutorEvto r")
 public class RespTutorEvto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="RESP_TUTOR_EVTOS_IDRESPTUTOREVTO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RESP_TUTOR_EVTOS_IDRESPTUTOREVTO_GENERATOR")
-	@Column(name="ID_RESP_TUTOR_EVTO")
+	@SequenceGenerator(name = "SEQ_ID_TUT_EVTOS")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_TUT_EVTOS")
+	@Column(name = "ID_RESP_TUTOR_EVTO")
 	private long idRespTutorEvto;
 
-	//bi-directional many-to-one association to Evento
 	@ManyToOne
-	@JoinColumn(name="ID_EVENTO")
+	@JoinColumn(name = "ID_EVENTO")
 	private Evento evento;
 
-	//bi-directional many-to-one association to Tutore
 	@ManyToOne
-	@JoinColumn(name="ID_TUTOR")
-	private Tutor tutore;
-
-	public RespTutorEvto() {
-	}
+	@JoinColumn(name = "ID_TUTOR")
+	private Tutor tutor;
 
 	public long getIdRespTutorEvto() {
-		return this.idRespTutorEvto;
+		return idRespTutorEvto;
 	}
 
 	public void setIdRespTutorEvto(long idRespTutorEvto) {
 		this.idRespTutorEvto = idRespTutorEvto;
-	}
-
-	public Evento getEvento() {
-		return this.evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
-
-	public Tutor getTutore() {
-		return this.tutore;
-	}
-
-	public void setTutore(Tutor tutore) {
-		this.tutore = tutore;
 	}
 
 }

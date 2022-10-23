@@ -1,61 +1,64 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the CONSTANCIAS database table.
- * 
+ * Entity implementation class for Entity: Constancia
+ *
  */
 @Entity
-@Table(name="CONSTANCIAS")
-@NamedQuery(name="Constancia.findAll", query="SELECT c FROM Constancia c")
+@Table(name = "CONSTANCIAS")
+@NamedQuery(name = "Constancia.findAll", query = "SELECT c FROM Constancia c")
 public class Constancia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CONSTANCIAS_IDCONSTANCIA_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CONSTANCIAS_IDCONSTANCIA_GENERATOR")
-	@Column(name="ID_CONSTANCIA")
+	@SequenceGenerator(name = "SEQ_ID_CONST")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_CONST")
+	@Column(name = "ID_CONSTANCIA")
 	private long idConstancia;
 
+	@Column(nullable = false)
 	private Timestamp fechahora;
 
-	@Column(name="INFO_ADJUNTA")
+	@Column(name = "INFO_ADJUNTA", length = 500)
 	private String infoAdjunta;
 
-	//bi-directional many-to-one association to AccionConstancia
-	@OneToMany(mappedBy="constancia")
+	@OneToMany(mappedBy = "constancia")
 	private List<AccionConstancia> accionConstancias;
 
-	//bi-directional many-to-one association to EstadosRecConJus
 	@ManyToOne
-	@JoinColumn(name="ID_ESTADOS_REC_CON_JUS")
-	private EstadosRecConJus estadosRecConJus;
+	@JoinColumn(name = "ID_ESTADOS_REC_CON_JUS")
+	private EstadoRecConJus estadoRecConJus;
 
-	//bi-directional many-to-one association to Estudiante
 	@ManyToOne
-	@JoinColumn(name="ID_ESTUDIANTE")
+	@JoinColumn(name = "ID_ESTUDIANTE")
 	private Estudiante estudiante;
 
-	//bi-directional many-to-one association to Evento
 	@ManyToOne
-	@JoinColumn(name="ID_EVENTO")
+	@JoinColumn(name = "ID_EVENTO")
 	private Evento evento;
 
-	//bi-directional many-to-one association to TiposConstancia
 	@ManyToOne
-	@JoinColumn(name="ID_TIPO_CONSTANCIA")
-	private TiposConstancia tiposConstancia;
-
-	public Constancia() {
-	}
+	@JoinColumn(name = "ID_TIPO_CONSTANCIA")
+	private TipoConstancia tipoConstancia;
 
 	public long getIdConstancia() {
-		return this.idConstancia;
+		return idConstancia;
 	}
 
 	public void setIdConstancia(long idConstancia) {
@@ -63,7 +66,7 @@ public class Constancia implements Serializable {
 	}
 
 	public Timestamp getFechahora() {
-		return this.fechahora;
+		return fechahora;
 	}
 
 	public void setFechahora(Timestamp fechahora) {
@@ -71,65 +74,11 @@ public class Constancia implements Serializable {
 	}
 
 	public String getInfoAdjunta() {
-		return this.infoAdjunta;
+		return infoAdjunta;
 	}
 
 	public void setInfoAdjunta(String infoAdjunta) {
 		this.infoAdjunta = infoAdjunta;
-	}
-
-	public List<AccionConstancia> getAccionConstancias() {
-		return this.accionConstancias;
-	}
-
-	public void setAccionConstancias(List<AccionConstancia> accionConstancias) {
-		this.accionConstancias = accionConstancias;
-	}
-
-	public AccionConstancia addAccionConstancia(AccionConstancia accionConstancia) {
-		getAccionConstancias().add(accionConstancia);
-		accionConstancia.setConstancia(this);
-
-		return accionConstancia;
-	}
-
-	public AccionConstancia removeAccionConstancia(AccionConstancia accionConstancia) {
-		getAccionConstancias().remove(accionConstancia);
-		accionConstancia.setConstancia(null);
-
-		return accionConstancia;
-	}
-
-	public EstadosRecConJus getEstadosRecConJus() {
-		return this.estadosRecConJus;
-	}
-
-	public void setEstadosRecConJus(EstadosRecConJus estadosRecConJus) {
-		this.estadosRecConJus = estadosRecConJus;
-	}
-
-	public Estudiante getEstudiante() {
-		return this.estudiante;
-	}
-
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
-	}
-
-	public Evento getEvento() {
-		return this.evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
-
-	public TiposConstancia getTiposConstancia() {
-		return this.tiposConstancia;
-	}
-
-	public void setTiposConstancia(TiposConstancia tiposConstancia) {
-		this.tiposConstancia = tiposConstancia;
 	}
 
 }

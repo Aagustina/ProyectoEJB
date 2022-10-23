@@ -1,37 +1,44 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the AREAS database table.
- * 
+ * Entity implementation class for Entity: Area
+ *
  */
 @Entity
-@Table(name="AREAS")
-@NamedQuery(name="Area.findAll", query="SELECT a FROM Area a")
+@Table(name = "AREAS")
+@NamedQuery(name = "Area.findAll", query = "SELECT a FROM Area a")
+
 public class Area implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="AREAS_IDAREA_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="AREAS_IDAREA_GENERATOR")
-	@Column(name="ID_AREA")
+	@SequenceGenerator(name = "SEQ_ID_AREAS")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_AREAS")
+	@Column(name = "ID_AREA")
 	private long idArea;
 
+	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	//bi-directional many-to-one association to Tutore
-	@OneToMany(mappedBy="area")
+	@OneToMany(mappedBy = "area")
 	private List<Tutor> tutores;
 
-	public Area() {
-	}
-
 	public long getIdArea() {
-		return this.idArea;
+		return idArea;
 	}
 
 	public void setIdArea(long idArea) {
@@ -39,33 +46,11 @@ public class Area implements Serializable {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public List<Tutor> getTutores() {
-		return this.tutores;
-	}
-
-	public void setTutores(List<Tutor> tutores) {
-		this.tutores = tutores;
-	}
-
-	public Tutor addTutore(Tutor tutore) {
-		getTutores().add(tutore);
-		tutore.setArea(this);
-
-		return tutore;
-	}
-
-	public Tutor removeTutore(Tutor tutore) {
-		getTutores().remove(tutore);
-		tutore.setArea(null);
-
-		return tutore;
 	}
 
 }

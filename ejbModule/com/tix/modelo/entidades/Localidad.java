@@ -1,42 +1,50 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the LOCALIDADES database table.
- * 
+ * Entity implementation class for Entity: Localidad
+ *
  */
 @Entity
-@Table(name="LOCALIDADES")
-@NamedQuery(name="Localidad.findAll", query="SELECT l FROM Localidad l")
+@Table(name = "LOCALIDADES")
+@NamedQuery(name = "Localidad.findAll", query = "SELECT l FROM Localidad l")
+
 public class Localidad implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="LOCALIDADES_IDLOCALIDAD_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="LOCALIDADES_IDLOCALIDAD_GENERATOR")
-	@Column(name="ID_LOCALIDAD")
+	@SequenceGenerator(name = "SEQ_ID_LOC")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_LOC")
+	@Column(name = "ID_LOCALIDAD")
 	private long idLocalidad;
 
+	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	//bi-directional many-to-one association to Departamento
 	@ManyToOne
-	@JoinColumn(name="ID_DEPARTAMENTO")
+	@JoinColumn(name = "ID_DEPARTAMENTO", nullable = false)
 	private Departamento departamento;
-
-	//bi-directional many-to-one association to Usuario
-	@OneToMany(mappedBy="localidade")
+	
+	@OneToMany(mappedBy="localidad")
 	private List<Usuario> usuarios;
 
-	public Localidad() {
-	}
-
 	public long getIdLocalidad() {
-		return this.idLocalidad;
+		return idLocalidad;
 	}
 
 	public void setIdLocalidad(long idLocalidad) {
@@ -44,7 +52,7 @@ public class Localidad implements Serializable {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
@@ -52,33 +60,11 @@ public class Localidad implements Serializable {
 	}
 
 	public Departamento getDepartamento() {
-		return this.departamento;
+		return departamento;
 	}
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
-	}
-
-	public List<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
-	public Usuario addUsuario(Usuario usuario) {
-		getUsuarios().add(usuario);
-		usuario.setLocalidade(this);
-
-		return usuario;
-	}
-
-	public Usuario removeUsuario(Usuario usuario) {
-		getUsuarios().remove(usuario);
-		usuario.setLocalidade(null);
-
-		return usuario;
 	}
 
 }

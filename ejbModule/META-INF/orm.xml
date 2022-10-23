@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd">
+	<entity class="com.tix.modelo.entidades.Departamento" access="FIELD">
+		<table name="DEPARTAMENTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Localidad" access="FIELD">
+		<table name="LOCALIDADES">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Itr" access="FIELD">
+		<table name="ITRS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Area" access="FIELD">
+		<table name="AREAS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Usuario" access="FIELD">
+		<table name="USUARIOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Constancia" access="FIELD">
+		<table name="CONSTANCIAS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Evento" access="FIELD">
+		<table name="EVENTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.AccionReclamo" access="FIELD">
+		<table name="ACCION_RECLAMOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Justificacion" access="FIELD">
+		<table name="JUSTIFICACIONES">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.EstadoRecConJus" access="FIELD">
+		<table name="ESTADOS_REC_CON_JUS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.TipoConstancia" access="FIELD">
+		<table name="TIPOS_CONSTANCIAS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.AccionConstancia" access="FIELD">
+		<table name="ACCION_CONSTANCIAS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.TipoEvento" access="FIELD">
+		<table name="TIPOS_EVENTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Modalidad" access="FIELD">
+		<table name="MODALIDADES">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.EstadoEvento" access="FIELD">
+		<table name="ESTADOS_EVENTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Reclamo" access="FIELD">
+		<table name="RECLAMOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.AsistEstEvto" access="FIELD">
+		<table name="ASIST_EST_EVTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.RespTutorEvto" access="FIELD">
+		<table name="RESP_TUTOR_EVTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.GestAnalistaEvto" access="FIELD">
+		<table name="GEST_ANALISTA_EVTOS">
+		</table>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Analista" access="FIELD">
+		<table name="ANALISTAS">
+		</table>
+		<inheritance strategy="JOINED"/>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Estudiante" access="FIELD">
+		<table name="ESTUDIANTES">
+		</table>
+		<inheritance strategy="JOINED"/>
+	</entity>
+	<entity class="com.tix.modelo.entidades.Tutor" access="FIELD">
+		<table name="TUTORES">
+		</table>
+		<inheritance strategy="JOINED"/>
+	</entity>
+	<entity class="com.tix.modelo.entidades.AccionJustificacion" access="FIELD">
+		<table name="ACCION_JUSTIFICACIONES">
+		</table>
+	</entity>
+</entity-mappings>

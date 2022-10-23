@@ -1,45 +1,50 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the ASIST_EST_EVTOS database table.
- * 
+ * Entity implementation class for Entity: AsistEstEvt
+ *
  */
 @Entity
-@Table(name="ASIST_EST_EVTOS")
-@NamedQuery(name="AsistEstEvto.findAll", query="SELECT a FROM AsistEstEvto a")
+@Table(name = "ASIST_EST_EVTOS")
+@NamedQuery(name = "AsistEstEvto.findAll", query = "SELECT a FROM AsistEstEvto a")
 public class AsistEstEvto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ASIST_EST_EVTOS_IDASISTESTEVTO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ASIST_EST_EVTOS_IDASISTESTEVTO_GENERATOR")
-	@Column(name="ID_ASIST_EST_EVTO")
+	@SequenceGenerator(name = "SEQ_ID_AS_EST_EVTOS")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_AS_EST_EVTOS")
+	@Column(name = "ID_ASIST_EST_EVTO")
 	private long idAsistEstEvto;
 
+	@Column(length = 25)
 	private String asistencia;
 
 	private BigDecimal calificacion;
 
-	//bi-directional many-to-one association to Estudiante
 	@ManyToOne
-	@JoinColumn(name="ID_ESTUDIANTE")
+	@JoinColumn(name = "ID_ESTUDIANTE")
 	private Estudiante estudiante;
 
-	//bi-directional many-to-one association to Evento
 	@ManyToOne
-	@JoinColumn(name="ID_EVENTO")
+	@JoinColumn(name = "ID_EVENTO")
 	private Evento evento;
 
-	public AsistEstEvto() {
-	}
-
 	public long getIdAsistEstEvto() {
-		return this.idAsistEstEvto;
+		return idAsistEstEvto;
 	}
 
 	public void setIdAsistEstEvto(long idAsistEstEvto) {
@@ -47,7 +52,7 @@ public class AsistEstEvto implements Serializable {
 	}
 
 	public String getAsistencia() {
-		return this.asistencia;
+		return asistencia;
 	}
 
 	public void setAsistencia(String asistencia) {
@@ -55,27 +60,11 @@ public class AsistEstEvto implements Serializable {
 	}
 
 	public BigDecimal getCalificacion() {
-		return this.calificacion;
+		return calificacion;
 	}
 
 	public void setCalificacion(BigDecimal calificacion) {
 		this.calificacion = calificacion;
-	}
-
-	public Estudiante getEstudiante() {
-		return this.estudiante;
-	}
-
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
-	}
-
-	public Evento getEvento() {
-		return this.evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
 	}
 
 }

@@ -1,72 +1,81 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- * The persistent class for the RECLAMOS database table.
- * 
+ * Entity implementation class for Entity: Reclamos
+ *
  */
 @Entity
-@Table(name="RECLAMOS")
-@NamedQuery(name="Reclamo.findAll", query="SELECT r FROM Reclamo r")
+@Table(name = "RECLAMOS")
+@NamedQuery(name = "Reclamo.findAll", query = "SELECT r FROM Reclamo r")
 public class Reclamo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="RECLAMOS_IDRECLAMO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RECLAMOS_IDRECLAMO_GENERATOR")
-	@Column(name="ID_RECLAMO")
+	@SequenceGenerator(name = "SEQ_ID_RECL")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_RECL")
+	@Column(name = "ID_RECLAMO")
 	private long idReclamo;
 
+	@Column(nullable = false, length = 100)
 	private String asunto;
 
-	private BigDecimal creditos;
-
+	@Column(length = 500)
 	private String detalle;
 
-	private String docente;
+	@Column(nullable = false)
+	private Timestamp fechahora;
+
+	@Column(name = "TIPO_RECL", nullable = false, length = 25)
+	private String tipoRecl;
+
+	@Column(name = "NOM_EVENTO", length = 100)
+	private String nomEvento;
+
+	@Column(name = "NOM_ACTIVIDAD", length = 100)
+	private String nomActividad;
+
+	private int semestre;
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
-	private Timestamp fechahora;
+	@Column(length = 60)
+	private String docente;
 
-	@Column(name="NOM_ACTIVIDAD")
-	private String nomActividad;
+	private int creditos;
 
-	@Column(name="NOM_EVENTO")
-	private String nomEvento;
-
-	private BigDecimal semestre;
-
-	@Column(name="TIPO_RECL")
-	private String tipoRecl;
-
-	//bi-directional many-to-one association to AccionReclamo
-	@OneToMany(mappedBy="reclamo")
+	@OneToMany(mappedBy = "reclamo")
 	private List<AccionReclamo> accionReclamos;
 
-	//bi-directional many-to-one association to EstadosRecConJus
 	@ManyToOne
-	@JoinColumn(name="ID_ESTADOS_REC_CON_JUS")
-	private EstadosRecConJus estadosRecConJus;
+	@JoinColumn(name = "ID_ESTADOS_REC_CON_JUS")
+	private EstadoRecConJus estadoRecConJus;
 
-	//bi-directional many-to-one association to Estudiante
 	@ManyToOne
-	@JoinColumn(name="ID_ESTUDIANTE")
+	@JoinColumn(name = "ID_ESTUDIANTE")
 	private Estudiante estudiante;
 
-	public Reclamo() {
-	}
-
 	public long getIdReclamo() {
-		return this.idReclamo;
+		return idReclamo;
 	}
 
 	public void setIdReclamo(long idReclamo) {
@@ -74,121 +83,83 @@ public class Reclamo implements Serializable {
 	}
 
 	public String getAsunto() {
-		return this.asunto;
+		return asunto;
 	}
 
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
 
-	public BigDecimal getCreditos() {
-		return this.creditos;
-	}
-
-	public void setCreditos(BigDecimal creditos) {
-		this.creditos = creditos;
-	}
-
 	public String getDetalle() {
-		return this.detalle;
+		return detalle;
 	}
 
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
 
-	public String getDocente() {
-		return this.docente;
-	}
-
-	public void setDocente(String docente) {
-		this.docente = docente;
-	}
-
-	public Date getFecha() {
-		return this.fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
 	public Timestamp getFechahora() {
-		return this.fechahora;
+		return fechahora;
 	}
 
 	public void setFechahora(Timestamp fechahora) {
 		this.fechahora = fechahora;
 	}
 
-	public String getNomActividad() {
-		return this.nomActividad;
-	}
-
-	public void setNomActividad(String nomActividad) {
-		this.nomActividad = nomActividad;
-	}
-
-	public String getNomEvento() {
-		return this.nomEvento;
-	}
-
-	public void setNomEvento(String nomEvento) {
-		this.nomEvento = nomEvento;
-	}
-
-	public BigDecimal getSemestre() {
-		return this.semestre;
-	}
-
-	public void setSemestre(BigDecimal semestre) {
-		this.semestre = semestre;
-	}
-
 	public String getTipoRecl() {
-		return this.tipoRecl;
+		return tipoRecl;
 	}
 
 	public void setTipoRecl(String tipoRecl) {
 		this.tipoRecl = tipoRecl;
 	}
 
-	public List<AccionReclamo> getAccionReclamos() {
-		return this.accionReclamos;
+	public String getNomEvento() {
+		return nomEvento;
 	}
 
-	public void setAccionReclamos(List<AccionReclamo> accionReclamos) {
-		this.accionReclamos = accionReclamos;
+	public void setNomEvento(String nomEvento) {
+		this.nomEvento = nomEvento;
 	}
 
-	public AccionReclamo addAccionReclamo(AccionReclamo accionReclamo) {
-		getAccionReclamos().add(accionReclamo);
-		accionReclamo.setReclamo(this);
-
-		return accionReclamo;
+	public String getNomActividad() {
+		return nomActividad;
 	}
 
-	public AccionReclamo removeAccionReclamo(AccionReclamo accionReclamo) {
-		getAccionReclamos().remove(accionReclamo);
-		accionReclamo.setReclamo(null);
-
-		return accionReclamo;
+	public void setNomActividad(String nomActividad) {
+		this.nomActividad = nomActividad;
 	}
 
-	public EstadosRecConJus getEstadosRecConJus() {
-		return this.estadosRecConJus;
+	public int getSemestre() {
+		return semestre;
 	}
 
-	public void setEstadosRecConJus(EstadosRecConJus estadosRecConJus) {
-		this.estadosRecConJus = estadosRecConJus;
+	public void setSemestre(int semestre) {
+		this.semestre = semestre;
 	}
 
-	public Estudiante getEstudiante() {
-		return this.estudiante;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getDocente() {
+		return docente;
+	}
+
+	public void setDocente(String docente) {
+		this.docente = docente;
+	}
+
+	public int getCreditos() {
+		return creditos;
+	}
+
+	public void setCreditos(int creditos) {
+		this.creditos = creditos;
 	}
 
 }

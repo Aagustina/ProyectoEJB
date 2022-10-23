@@ -1,97 +1,37 @@
 package com.tix.modelo.entidades;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the TUTORES database table.
- * 
+ * Entity implementation class for Entity: Tutor
+ *
  */
 @Entity
-@Table(name="TUTORES")
-@NamedQuery(name="Tutor.findAll", query="SELECT t FROM Tutor t")
-public class Tutor implements Serializable {
+@Table(name = "TUTORES")
+@NamedQuery(name = "Tutor.findAll", query = "SELECT t FROM Tutor t")
+@PrimaryKeyJoinColumn(name = "ID_TUTOR")
+public class Tutor extends Usuario {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="TUTORES_IDTUTOR_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TUTORES_IDTUTOR_GENERATOR")
-	@Column(name="ID_TUTOR")
-	private long idTutor;
-
+	@Column(nullable = false, length = 50)
 	private String tipo;
 
-	//bi-directional many-to-one association to RespTutorEvto
-	@OneToMany(mappedBy="tutore")
-	private List<RespTutorEvto> respTutorEvtos;
-
-	//bi-directional many-to-one association to Area
 	@ManyToOne
-	@JoinColumn(name="ID_AREA")
+	@JoinColumn(name = "ID_AREA")
 	private Area area;
 
-	//bi-directional one-to-one association to Usuario
-	@OneToOne
-	@JoinColumn(name="ID_TUTOR")
-	private Usuario usuario;
-
-	public Tutor() {
-	}
-
-	public long getIdTutor() {
-		return this.idTutor;
-	}
-
-	public void setIdTutor(long idTutor) {
-		this.idTutor = idTutor;
-	}
-
 	public String getTipo() {
-		return this.tipo;
+		return tipo;
 	}
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public List<RespTutorEvto> getRespTutorEvtos() {
-		return this.respTutorEvtos;
-	}
-
-	public void setRespTutorEvtos(List<RespTutorEvto> respTutorEvtos) {
-		this.respTutorEvtos = respTutorEvtos;
-	}
-
-	public RespTutorEvto addRespTutorEvto(RespTutorEvto respTutorEvto) {
-		getRespTutorEvtos().add(respTutorEvto);
-		respTutorEvto.setTutore(this);
-
-		return respTutorEvto;
-	}
-
-	public RespTutorEvto removeRespTutorEvto(RespTutorEvto respTutorEvto) {
-		getRespTutorEvtos().remove(respTutorEvto);
-		respTutorEvto.setTutore(null);
-
-		return respTutorEvto;
-	}
-
-	public Area getArea() {
-		return this.area;
-	}
-
-	public void setArea(Area area) {
-		this.area = area;
-	}
-
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 }

@@ -1,41 +1,47 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the DEPARTAMENTOS database table.
- * 
+ * Entity implementation class for Entity: Departamento
+ *
  */
 @Entity
-@Table(name="DEPARTAMENTOS")
-@NamedQuery(name="Departamento.findAll", query="SELECT d FROM Departamento d")
+@Table(name = "DEPARTAMENTOS")
+@NamedQuery(name = "Departamento.findAll", query = "SELECT d FROM Departamento d")
+
 public class Departamento implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="DEPARTAMENTOS_IDDEPARTAMENTO_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="DEPARTAMENTOS_IDDEPARTAMENTO_GENERATOR")
-	@Column(name="ID_DEPARTAMENTO")
+	@SequenceGenerator(name = "SEQ_ID_DPTO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_DPTO")
+	@Column(name = "ID_DEPARTAMENTO", nullable = false)
 	private long idDepartamento;
 
+	@Column(nullable = false, length = 50, unique = true)
 	private String nombre;
 
-	//bi-directional many-to-one association to Itr
-	@OneToMany(mappedBy="departamentoBean")
+	@OneToMany(mappedBy = "departamento")
 	private List<Itr> itrs;
 
-	//bi-directional many-to-one association to Localidade
-	@OneToMany(mappedBy="departamento")
+	@OneToMany(mappedBy = "departamento")
 	private List<Localidad> localidades;
 
-	public Departamento() {
-	}
-
 	public long getIdDepartamento() {
-		return this.idDepartamento;
+		return idDepartamento;
 	}
 
 	public void setIdDepartamento(long idDepartamento) {
@@ -43,7 +49,7 @@ public class Departamento implements Serializable {
 	}
 
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
@@ -51,47 +57,19 @@ public class Departamento implements Serializable {
 	}
 
 	public List<Itr> getItrs() {
-		return this.itrs;
+		return itrs;
 	}
 
 	public void setItrs(List<Itr> itrs) {
 		this.itrs = itrs;
 	}
 
-	public Itr addItr(Itr itr) {
-		getItrs().add(itr);
-		itr.setDepartamentoBean(this);
-
-		return itr;
-	}
-
-	public Itr removeItr(Itr itr) {
-		getItrs().remove(itr);
-		itr.setDepartamentoBean(null);
-
-		return itr;
-	}
-
 	public List<Localidad> getLocalidades() {
-		return this.localidades;
+		return localidades;
 	}
 
 	public void setLocalidades(List<Localidad> localidades) {
 		this.localidades = localidades;
-	}
-
-	public Localidad addLocalidade(Localidad localidade) {
-		getLocalidades().add(localidade);
-		localidade.setDepartamento(this);
-
-		return localidade;
-	}
-
-	public Localidad removeLocalidade(Localidad localidade) {
-		getLocalidades().remove(localidade);
-		localidade.setDepartamento(null);
-
-		return localidade;
 	}
 
 }

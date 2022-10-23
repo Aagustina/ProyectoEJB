@@ -1,58 +1,63 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the JUSTIFICACIONES database table.
- * 
+ * Entity implementation class for Entity: Justificacion
+ *
  */
 @Entity
-@Table(name="JUSTIFICACIONES")
-@NamedQuery(name="Justificacion.findAll", query="SELECT j FROM Justificacion j")
+@Table(name = "JUSTIFICACIONES")
+@NamedQuery(name = "Justificacion.findAll", query = "SELECT j FROM Justificacion j")
 public class Justificacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="JUSTIFICACIONES_IDJUSTIFICACION_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="JUSTIFICACIONES_IDJUSTIFICACION_GENERATOR")
-	@Column(name="ID_JUSTIFICACION")
+	@SequenceGenerator(name = "SEQ_ID_JUSTF")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_JUSTF")
+	@Column(name = "ID_JUSTIFICACION")
 	private long idJustificacion;
 
+	@Column(length = 500)
 	private String detalle;
 
+	@Column(nullable = false)
 	private Timestamp fechahora;
 
-	@Column(name="INFO_ADJUNTA")
+	@Column(name = "INFO_ADJUNTA")
 	private String infoAdjunta;
 
-	//bi-directional many-to-one association to AccionJustificacione
-	@OneToMany(mappedBy="justificacione")
+	@OneToMany(mappedBy = "justificacion")
 	private List<AccionJustificacion> accionJustificaciones;
 
-	//bi-directional many-to-one association to EstadosRecConJus
 	@ManyToOne
-	@JoinColumn(name="ID_ESTADOS_REC_CON_JUS")
-	private EstadosRecConJus estadosRecConJus;
+	@JoinColumn(name = "ID_ESTADOS_REC_CON_JUS")
+	private EstadoRecConJus estadoRecConJus;
 
-	//bi-directional many-to-one association to Estudiante
 	@ManyToOne
-	@JoinColumn(name="ID_ESTUDIANTE")
+	@JoinColumn(name = "ID_ESTUDIANTE")
 	private Estudiante estudiante;
 
-	//bi-directional many-to-one association to Evento
 	@ManyToOne
-	@JoinColumn(name="ID_EVENTO")
+	@JoinColumn(name = "ID_EVENTO")
 	private Evento evento;
 
-	public Justificacion() {
-	}
-
 	public long getIdJustificacion() {
-		return this.idJustificacion;
+		return idJustificacion;
 	}
 
 	public void setIdJustificacion(long idJustificacion) {
@@ -60,7 +65,7 @@ public class Justificacion implements Serializable {
 	}
 
 	public String getDetalle() {
-		return this.detalle;
+		return detalle;
 	}
 
 	public void setDetalle(String detalle) {
@@ -68,7 +73,7 @@ public class Justificacion implements Serializable {
 	}
 
 	public Timestamp getFechahora() {
-		return this.fechahora;
+		return fechahora;
 	}
 
 	public void setFechahora(Timestamp fechahora) {
@@ -76,57 +81,11 @@ public class Justificacion implements Serializable {
 	}
 
 	public String getInfoAdjunta() {
-		return this.infoAdjunta;
+		return infoAdjunta;
 	}
 
 	public void setInfoAdjunta(String infoAdjunta) {
 		this.infoAdjunta = infoAdjunta;
-	}
-
-	public List<AccionJustificacion> getAccionJustificaciones() {
-		return this.accionJustificaciones;
-	}
-
-	public void setAccionJustificaciones(List<AccionJustificacion> accionJustificaciones) {
-		this.accionJustificaciones = accionJustificaciones;
-	}
-
-	public AccionJustificacion addAccionJustificacione(AccionJustificacion accionJustificacione) {
-		getAccionJustificaciones().add(accionJustificacione);
-		accionJustificacione.setJustificacione(this);
-
-		return accionJustificacione;
-	}
-
-	public AccionJustificacion removeAccionJustificacione(AccionJustificacion accionJustificacione) {
-		getAccionJustificaciones().remove(accionJustificacione);
-		accionJustificacione.setJustificacione(null);
-
-		return accionJustificacione;
-	}
-
-	public EstadosRecConJus getEstadosRecConJus() {
-		return this.estadosRecConJus;
-	}
-
-	public void setEstadosRecConJus(EstadosRecConJus estadosRecConJus) {
-		this.estadosRecConJus = estadosRecConJus;
-	}
-
-	public Estudiante getEstudiante() {
-		return this.estudiante;
-	}
-
-	public void setEstudiante(Estudiante estudiante) {
-		this.estudiante = estudiante;
-	}
-
-	public Evento getEvento() {
-		return this.evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
 	}
 
 }

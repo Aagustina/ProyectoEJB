@@ -1,81 +1,47 @@
 package com.tix.modelo.entidades;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the ACCION_CONSTANCIAS database table.
- * 
+ * Entity implementation class for Entity: AccionConstancia
+ *
  */
 @Entity
-@Table(name="ACCION_CONSTANCIAS")
-@NamedQuery(name="AccionConstancia.findAll", query="SELECT a FROM AccionConstancia a")
+@Table(name = "ACCION_CONSTANCIAS")
+@NamedQuery(name = "AccionConstancia.findAll", query = "SELECT a FROM AccionConstancia a")
 public class AccionConstancia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ACCION_CONSTANCIAS_IDACCCONSTANCIA_GENERATOR" )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACCION_CONSTANCIAS_IDACCCONSTANCIA_GENERATOR")
-	@Column(name="ID_ACC_CONSTANCIA")
+	@SequenceGenerator(name = "SEQ_ID_ACC_CONST")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_ACC_CONST")
+	@Column(name = "ID_ACC_CONSTANCIA")
 	private long idAccConstancia;
 
-	private String detalle;
-
-	private Timestamp fechahora;
-
-	//bi-directional many-to-one association to Analista
 	@ManyToOne
-	@JoinColumn(name="ID_ANALISTA")
+	@JoinColumn(name = "ID_ANALISTA")
 	private Analista analista;
 
-	//bi-directional many-to-one association to Constancia
 	@ManyToOne
-	@JoinColumn(name="ID_CONSTANCIA")
+	@JoinColumn(name = "ID_CONSTANCIA")
 	private Constancia constancia;
 
-	public AccionConstancia() {
-	}
+	@Column(length = 500)
+	private String detalle;
 
-	public long getIdAccConstancia() {
-		return this.idAccConstancia;
-	}
-
-	public void setIdAccConstancia(long idAccConstancia) {
-		this.idAccConstancia = idAccConstancia;
-	}
-
-	public String getDetalle() {
-		return this.detalle;
-	}
-
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
-
-	public Timestamp getFechahora() {
-		return this.fechahora;
-	}
-
-	public void setFechahora(Timestamp fechahora) {
-		this.fechahora = fechahora;
-	}
-
-	public Analista getAnalista() {
-		return this.analista;
-	}
-
-	public void setAnalista(Analista analista) {
-		this.analista = analista;
-	}
-
-	public Constancia getConstancia() {
-		return this.constancia;
-	}
-
-	public void setConstancia(Constancia constancia) {
-		this.constancia = constancia;
-	}
+	@Column(nullable = false)
+	private Timestamp fechahora;
 
 }
