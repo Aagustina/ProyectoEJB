@@ -3,16 +3,15 @@ package com.tix.modelo.servicios;
 import javax.ejb.Stateless;
 
 /**
- * Session Bean implementation class UsuariosBean
+ * Session Bean implementation class TutoresBean
  */
 @Stateless
-public class UsuariosBean implements UsuariosBeanRemote {
+public class TutoresBean implements TutoresBeanRemote {
 
 	/**
 	 * Default constructor.
 	 */
-	public UsuariosBean() {
+	public TutoresBean() {
 		// TODO Auto-generated constructor stub
 	}
-
 }

@@ -81,7 +81,7 @@ public abstract class Usuario implements Serializable {
 	private Itr itr;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_LOCALIDAD")
+	@JoinColumn(name = "LOCALIDAD")
 	private Localidad localidad;
 
 	public Usuario() {

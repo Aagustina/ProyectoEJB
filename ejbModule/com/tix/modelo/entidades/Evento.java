@@ -51,7 +51,7 @@ public class Evento implements Serializable {
 	private List<Constancia> constancias;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ESTADO_EVENTO")
+	@JoinColumn(name = "ID_ESTADO")
 	private EstadoEvento estadoEvento;
 
 	@ManyToOne

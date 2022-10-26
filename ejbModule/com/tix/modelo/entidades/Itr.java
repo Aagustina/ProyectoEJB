@@ -41,7 +41,7 @@ public class Itr implements Serializable {
 	private String nombre;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_DEPARTAMENTO", nullable = false)
+	@JoinColumn(name = "DEPARTAMENTO", nullable = false)
 	private Departamento departamento;
 
 	@OneToMany(mappedBy = "itr")
