@@ -77,11 +77,11 @@ public abstract class Usuario implements Serializable {
 	private int estado;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ITR")
+	@JoinColumn(name = "ID_ITR", nullable = false)
 	private Itr itr;
 
 	@ManyToOne
-	@JoinColumn(name = "LOCALIDAD")
+	@JoinColumn(name = "LOCALIDAD", nullable = false)
 	private Localidad localidad;
 
 	public Usuario() {
@@ -200,4 +200,20 @@ public abstract class Usuario implements Serializable {
 		this.estado = estado;
 	}
 
+	public Itr getItr() {
+		return itr;
+	}
+
+	public void setItr(Itr itr) {
+		this.itr = itr;
+	}
+
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+	
 }

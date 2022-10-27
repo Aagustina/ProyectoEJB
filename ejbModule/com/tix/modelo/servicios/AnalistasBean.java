@@ -1,8 +1,15 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.tix.modelo.daos.AnalistaDAO;
+import com.tix.modelo.entidades.Analista;
 
 /**
  * Session Bean implementation class AnalistaBean
@@ -10,14 +17,25 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class AnalistasBean implements AnalistasBeanRemote {
 
-	@PersistenceContext
-	private EntityManager em;
+	@EJB
+	AnalistaDAO analistaDAO = new AnalistaDAO();
 
 	/**
 	 * Default constructor.
 	 */
 	public AnalistasBean() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	@Remove
+	public void registro(Analista analista) {
+		analistaDAO.crear(analista);
+	}
+
+	@Override
+	public List<Analista> obtenerTodos() {
+		return analistaDAO.obtenerTodos();
 	}
 
 }
