@@ -25,6 +25,13 @@ public class UsuarioDAO {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Usuario obtenerPorNombreUsuario(String nombreUsuario) {
+		TypedQuery<Usuario> query = em
+				.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario LIKE :nombreUsuario", Usuario.class)
+				.setParameter("nombreUsuario", nombreUsuario);
+		return query.getResultList().get(0);
+	}
+
 	public List<Usuario> obtenerTodos() {
 		TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
 		return query.getResultList();

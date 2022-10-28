@@ -215,5 +215,5 @@ public abstract class Usuario implements Serializable {
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
 	}
-	
+
 }
