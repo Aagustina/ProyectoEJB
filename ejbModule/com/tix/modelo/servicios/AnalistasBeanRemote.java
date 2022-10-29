@@ -12,4 +12,6 @@ public interface AnalistasBeanRemote {
 	void registro(Analista analista);
 
 	List<Analista> obtenerTodos();
+	
+	Analista obtenerAnalistaPorNombreUsuario(String nombreUsuario); 
 }

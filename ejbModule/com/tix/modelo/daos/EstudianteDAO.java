@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.tix.modelo.entidades.Analista;
 import com.tix.modelo.entidades.Estudiante;
 
 /**
@@ -39,6 +40,13 @@ public class EstudianteDAO {
 		Estudiante estudiante = em.find(Estudiante.class, id);
 		em.remove(estudiante);
 		em.flush();
+	}
+	
+	public Estudiante obtenerPorNombreUsuario(String nombreUsuario) {
+		TypedQuery<Estudiante> query = em
+				.createQuery("SELECT e FROM Estudiante e WHERE e.nombreUsuario LIKE :nombreUsuario", Estudiante.class)
+				.setParameter("nombreUsuario", nombreUsuario);
+		return query.getResultList().get(0);
 	}
 
 	public List<Estudiante> obtenerTodos() {
