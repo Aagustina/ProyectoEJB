@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.tix.modelo.entidades.Analista;
+import com.tix.modelo.entidades.Usuario;
 
 /**
  * Session Bean implementation class AnalistaDAO
@@ -40,6 +41,14 @@ public class AnalistaDAO {
 		em.remove(analista);
 		em.flush();
 	}
+	
+	public Analista obtenerPorNombreUsuario(String nombreUsuario) {
+		TypedQuery<Analista> query = em
+				.createQuery("SELECT a FROM Analista a WHERE a.nombreUsuario LIKE :nombreUsuario", Analista.class)
+				.setParameter("nombreUsuario", nombreUsuario);
+		return query.getResultList().get(0);
+	}
+
 
 	public List<Analista> obtenerTodos() {
 		TypedQuery<Analista> query = em.createQuery("SELECT a FROM Analista a", Analista.class);

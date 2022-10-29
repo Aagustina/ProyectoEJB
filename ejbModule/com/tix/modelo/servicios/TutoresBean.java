@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.tix.modelo.daos.TutorDAO;
+import com.tix.modelo.entidades.Estudiante;
 import com.tix.modelo.entidades.Tutor;
 
 /**
@@ -25,5 +26,10 @@ public class TutoresBean implements TutoresBeanRemote {
 	@Override
 	public void registro(Tutor tutor) {
 		tutorDAO.crear(tutor);
+	}
+
+	@Override
+	public Tutor obtenerTutorPorNombreUsuario(String nombreUsuario) {
+		return tutorDAO.obtenerTutorPorNombreUsuario(nombreUsuario);
 	}
 }

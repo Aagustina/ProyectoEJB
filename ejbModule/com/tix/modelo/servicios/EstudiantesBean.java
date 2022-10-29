@@ -27,4 +27,9 @@ public class EstudiantesBean implements EstudiantesBeanRemote {
 		estudianteDAO.crear(estudiante);
 	}
 
+	@Override
+	public Estudiante obtenerEstudiantePorNombreUsuario(String nombreUsuario) {
+		return estudianteDAO.obtenerPorNombreUsuario(nombreUsuario);
+	}
+
 }
