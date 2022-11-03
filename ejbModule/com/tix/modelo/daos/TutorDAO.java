@@ -26,27 +26,27 @@ public class TutorDAO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void crear(Tutor tutor) {
+	public void crear(Tutor tutor) throws Exception {
 		em.persist(tutor);
 		em.flush();
 	}
 
-	public void actualizar(Tutor tutor) {
+	public void actualizar(Tutor tutor) throws Exception {
 		em.merge(tutor);
 		em.flush();
 	}
 
-	public void borrar(Long id) {
+	public void borrar(Long id) throws Exception {
 		Tutor tutor = em.find(Tutor.class, id);
 		em.remove(tutor);
 		em.flush();
 	}
-	
-	public Tutor obtenerTutorPorNombreUsuario(String nombreUsuario) {
+
+	public List<Tutor> obtenerTutorPorNombreUsuario(String nombreUsuario) {
 		TypedQuery<Tutor> query = em
 				.createQuery("SELECT t FROM Tutor t WHERE t.nombreUsuario LIKE :nombreUsuario", Tutor.class)
 				.setParameter("nombreUsuario", nombreUsuario);
-		return query.getResultList().get(0);
+		return query.getResultList();
 	}
 
 	public List<Tutor> obtenerTodos() {

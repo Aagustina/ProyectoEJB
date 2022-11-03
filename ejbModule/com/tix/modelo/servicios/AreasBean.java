@@ -1,5 +1,7 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -32,6 +34,16 @@ public class AreasBean implements AreasBeanRemote {
 	@Override
 	public Itr obtenerAreaPorId(Long idArea) {
 		return areaDAO.obtenerAreaPorId(idArea);
+	}
+
+	@Override
+	public List<Area> obtenerTodos() {
+		return areaDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Area> obtenerTodos(String filtro) {
+		return areaDAO.obtenerTodos(filtro);
 	}
 
 }

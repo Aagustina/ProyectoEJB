@@ -72,4 +72,9 @@ public class Departamento implements Serializable {
 		this.localidades = localidades;
 	}
 
+	@Override
+	public String toString() {
+		return nombre;
+	}
+
 }

@@ -1,9 +1,13 @@
 package com.tix.modelo.daos;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import com.tix.modelo.entidades.Analista;
 import com.tix.modelo.entidades.Itr;
 import com.tix.modelo.entidades.Localidad;
 
@@ -30,6 +34,17 @@ public class ItrDAO {
 
 	public Itr obtenerLocalidadPorId(Long idItr) {
 		return em.find(Itr.class, idItr);
+	}
+
+	public List<Itr> obtenerTodos() {
+		TypedQuery<Itr> query = em.createQuery("SELECT i FROM Itr i", Itr.class);
+		return query.getResultList();
+	}
+
+	public List<Itr> obtenerTodos(String filtro) {
+		TypedQuery<Itr> query = em.createQuery("SELECT i FROM Itr i WHERE i.nombre LIKE :nombre", Itr.class)
+				.setParameter("nombre", filtro);
+		return query.getResultList();
 	}
 
 }

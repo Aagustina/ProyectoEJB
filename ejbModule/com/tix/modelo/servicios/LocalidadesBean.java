@@ -1,5 +1,7 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -30,6 +32,16 @@ public class LocalidadesBean implements LocalidadesBeanRemote {
 	@Override
 	public Localidad obtenerLocalidadPorId(Long idLocalidad) {
 		return localidadDAO.obtenerLocalidadPorId(idLocalidad);
+	}
+
+	@Override
+	public List<Localidad> obtenerTodos() {
+		return localidadDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Localidad> obtenerTodos(String filtro) {
+		return localidadDAO.obtenerTodos(filtro);
 	}
 
 }

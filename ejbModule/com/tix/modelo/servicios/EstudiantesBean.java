@@ -1,5 +1,7 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -23,12 +25,12 @@ public class EstudiantesBean implements EstudiantesBeanRemote {
 	}
 
 	@Override
-	public void registro(Estudiante estudiante) {
+	public void registro(Estudiante estudiante) throws Exception {
 		estudianteDAO.crear(estudiante);
 	}
 
 	@Override
-	public Estudiante obtenerEstudiantePorNombreUsuario(String nombreUsuario) {
+	public List<Estudiante> obtenerEstudiantePorNombreUsuario(String nombreUsuario) {
 		return estudianteDAO.obtenerPorNombreUsuario(nombreUsuario);
 	}
 

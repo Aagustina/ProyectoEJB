@@ -39,8 +39,8 @@ public class Localidad implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_DEPARTAMENTO", nullable = false)
 	private Departamento departamento;
-	
-	@OneToMany(mappedBy="localidad")
+
+	@OneToMany(mappedBy = "localidad")
 	private List<Usuario> usuarios;
 
 	public long getIdLocalidad() {
@@ -65,6 +65,11 @@ public class Localidad implements Serializable {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+
+	@Override
+	public String toString() {
+		return nombre;
 	}
 
 }

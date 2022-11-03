@@ -9,9 +9,9 @@ import com.tix.modelo.entidades.Analista;
 @Remote
 public interface AnalistasBeanRemote {
 
-	void registro(Analista analista);
+	void registro(Analista analista) throws Exception;
 
 	List<Analista> obtenerTodos();
-	
-	Analista obtenerAnalistaPorNombreUsuario(String nombreUsuario); 
+
+	List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario);
 }

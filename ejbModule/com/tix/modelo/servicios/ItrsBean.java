@@ -1,5 +1,7 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -31,6 +33,16 @@ public class ItrsBean implements ItrsBeanRemote {
 	@Override
 	public Itr obtenerItrPorId(Long idItr) {
 		return itrDAO.obtenerLocalidadPorId(idItr);
+	}
+
+	@Override
+	public List<Itr> obtenerTodos() {
+		return itrDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Itr> obtenerTodos(String filtro) {
+		return itrDAO.obtenerTodos(filtro);
 	}
 
 }

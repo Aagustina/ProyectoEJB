@@ -46,8 +46,8 @@ public class Itr implements Serializable {
 
 	@OneToMany(mappedBy = "itr")
 	private List<Usuario> usuarios;
-	
-	@OneToMany(mappedBy="itr")
+
+	@OneToMany(mappedBy = "itr")
 	private List<Evento> eventos;
 
 	public long getIdItr() {
@@ -80,6 +80,11 @@ public class Itr implements Serializable {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+
+	@Override
+	public String toString() {
+		return nombre;
 	}
 
 }

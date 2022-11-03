@@ -1,5 +1,7 @@
 package com.tix.modelo.servicios;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -30,6 +32,16 @@ public class DepartamentosBean implements DepartamentosBeanRemote {
 	@Override
 	public Departamento obtenerDepartamentoPorId(Long idDepartamento) {
 		return departamentoDAO.obtenerDepartamentoPorId(idDepartamento);
+	}
+
+	@Override
+	public List<Departamento> obtenerTodos() {
+		return departamentoDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Departamento> obtenerTodos(String filtro) {
+		return departamentoDAO.obtenerTodos(filtro);
 	}
 
 }

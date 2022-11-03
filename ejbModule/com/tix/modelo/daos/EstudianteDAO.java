@@ -26,27 +26,27 @@ public class EstudianteDAO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void crear(Estudiante estudiante) {
+	public void crear(Estudiante estudiante) throws Exception {
 		em.persist(estudiante);
 		em.flush();
 	}
 
-	public void actualizar(Estudiante estudiante) {
+	public void actualizar(Estudiante estudiante) throws Exception {
 		em.merge(estudiante);
 		em.flush();
 	}
 
-	public void borrar(Long id) {
+	public void borrar(Long id) throws Exception {
 		Estudiante estudiante = em.find(Estudiante.class, id);
 		em.remove(estudiante);
 		em.flush();
 	}
-	
-	public Estudiante obtenerPorNombreUsuario(String nombreUsuario) {
+
+	public List<Estudiante> obtenerPorNombreUsuario(String nombreUsuario) {
 		TypedQuery<Estudiante> query = em
 				.createQuery("SELECT e FROM Estudiante e WHERE e.nombreUsuario LIKE :nombreUsuario", Estudiante.class)
 				.setParameter("nombreUsuario", nombreUsuario);
-		return query.getResultList().get(0);
+		return query.getResultList();
 	}
 
 	public List<Estudiante> obtenerTodos() {

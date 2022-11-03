@@ -29,7 +29,7 @@ public class AnalistasBean implements AnalistasBeanRemote {
 
 	@Override
 	@Remove
-	public void registro(Analista analista) {
+	public void registro(Analista analista) throws Exception {
 		analistaDAO.crear(analista);
 	}
 
@@ -39,7 +39,7 @@ public class AnalistasBean implements AnalistasBeanRemote {
 	}
 
 	@Override
-	public Analista obtenerAnalistaPorNombreUsuario(String nombreUsuario) {
+	public List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario)  {
 		return analistaDAO.obtenerPorNombreUsuario(nombreUsuario);
 	}
 
