@@ -34,12 +34,17 @@ public class AnalistasBean implements AnalistasBeanRemote {
 	}
 
 	@Override
+	public void editar(Analista analista) throws Exception {
+		analistaDAO.actualizar(analista);
+	}
+
+	@Override
 	public List<Analista> obtenerTodos() {
 		return analistaDAO.obtenerTodos();
 	}
 
 	@Override
-	public List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario)  {
+	public List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario) {
 		return analistaDAO.obtenerPorNombreUsuario(nombreUsuario);
 	}
 

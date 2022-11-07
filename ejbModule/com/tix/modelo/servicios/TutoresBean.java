@@ -34,4 +34,14 @@ public class TutoresBean implements TutoresBeanRemote {
 	public List<Tutor> obtenerTutorPorNombreUsuario(String nombreUsuario) {
 		return tutorDAO.obtenerTutorPorNombreUsuario(nombreUsuario);
 	}
+
+	@Override
+	public List<Tutor> obtenerTodos() {
+		return tutorDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Tutor> obtenerTodos(String filtro) {
+		return obtenerTodos(filtro);
+	}
 }

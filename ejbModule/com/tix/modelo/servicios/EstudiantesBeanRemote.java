@@ -11,4 +11,8 @@ public interface EstudiantesBeanRemote {
 	void registro(Estudiante estudiante) throws Exception;
 
 	List<Estudiante> obtenerEstudiantePorNombreUsuario(String nombreUsuario);
+
+	List<Estudiante> obtenerTodos();
+
+	List<Estudiante> obtenerTodos(String filtro);
 }

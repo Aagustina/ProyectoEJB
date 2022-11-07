@@ -11,6 +11,8 @@ public interface AnalistasBeanRemote {
 
 	void registro(Analista analista) throws Exception;
 
+	void editar(Analista analista) throws Exception;
+
 	List<Analista> obtenerTodos();
 
 	List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario);

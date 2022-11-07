@@ -192,8 +192,16 @@ public abstract class Usuario implements Serializable {
 		this.contrasenia = contrasenia;
 	}
 
-	public int getEstado() {
-		return estado;
+	public String getEstado() {
+		switch (estado) {
+			case 0:
+				return "Sin Validar";
+			case 1:
+				return "Activo";
+			case 2:
+				return "Eliminado";
+		}
+		return "Sin asignar";
 	}
 
 	public void setEstado(int estado) {

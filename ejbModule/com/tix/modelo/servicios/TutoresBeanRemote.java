@@ -12,4 +12,8 @@ public interface TutoresBeanRemote {
 	void registro(Tutor tutor) throws Exception;
 
 	List<Tutor> obtenerTutorPorNombreUsuario(String nombreUsuario);
+
+	List<Tutor> obtenerTodos();
+
+	List<Tutor> obtenerTodos(String filtro);
 }

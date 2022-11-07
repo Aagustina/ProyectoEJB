@@ -34,4 +34,14 @@ public class EstudiantesBean implements EstudiantesBeanRemote {
 		return estudianteDAO.obtenerPorNombreUsuario(nombreUsuario);
 	}
 
+	@Override
+	public List<Estudiante> obtenerTodos() {
+		return estudianteDAO.obtenerTodos();
+	}
+
+	@Override
+	public List<Estudiante> obtenerTodos(String filtro) {
+		return estudianteDAO.obtenerTodos(filtro);
+	}
+
 }
