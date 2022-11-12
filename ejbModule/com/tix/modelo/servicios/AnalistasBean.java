@@ -48,4 +48,9 @@ public class AnalistasBean implements AnalistasBeanRemote {
 		return analistaDAO.obtenerPorNombreUsuario(nombreUsuario);
 	}
 
+	@Override
+	public Analista obtenerAnalistaPorId(long id) {
+		return analistaDAO.obtenerPorId(id);
+	}
+
 }

@@ -15,4 +15,6 @@ public interface EstudiantesBeanRemote {
 	List<Estudiante> obtenerTodos();
 
 	List<Estudiante> obtenerTodos(String filtro);
+
+	Estudiante obtenerEstudiantePorId(long id);
 }

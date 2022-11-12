@@ -41,6 +41,10 @@ public class EstudianteDAO {
 		em.remove(estudiante);
 		em.flush();
 	}
+	
+	public Estudiante obtenerPorId(long id) {
+		return em.find(Estudiante.class, id);
+	}
 
 	public List<Estudiante> obtenerPorNombreUsuario(String nombreUsuario) {
 		TypedQuery<Estudiante> query = em

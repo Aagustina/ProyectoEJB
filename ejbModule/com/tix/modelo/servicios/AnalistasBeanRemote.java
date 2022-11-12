@@ -16,4 +16,6 @@ public interface AnalistasBeanRemote {
 	List<Analista> obtenerTodos();
 
 	List<Analista> obtenerAnalistaPorNombreUsuario(String nombreUsuario);
+
+	Analista obtenerAnalistaPorId(long id);
 }

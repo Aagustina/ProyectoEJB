@@ -197,15 +197,21 @@ public abstract class Usuario implements Serializable {
 			case 0:
 				return "Sin Validar";
 			case 1:
-				return "Activo";
+				return "Validado";
 			case 2:
 				return "Eliminado";
 		}
-		return "Sin asignar";
+		return "Sin Validar";
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setEstado(String estado) {
+		if (estado.equals("Sin Validar")) {
+			this.estado = 0;
+		} else if (estado.equals("Activo")) {
+			this.estado = 1;
+		} else {
+			this.estado = 2;
+		}
 	}
 
 	public Itr getItr() {

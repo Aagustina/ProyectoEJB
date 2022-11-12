@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.tix.modelo.entidades.Analista;
 import com.tix.modelo.entidades.Estudiante;
 import com.tix.modelo.entidades.Tutor;
 
@@ -40,6 +41,10 @@ public class TutorDAO {
 		Tutor tutor = em.find(Tutor.class, id);
 		em.remove(tutor);
 		em.flush();
+	}
+
+	public Tutor obtenerPorId(long id) {
+		return em.find(Tutor.class, id);
 	}
 
 	public List<Tutor> obtenerTutorPorNombreUsuario(String nombreUsuario) {

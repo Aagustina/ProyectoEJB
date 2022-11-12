@@ -42,6 +42,10 @@ public class AnalistaDAO {
 		em.flush();
 	}
 
+	public Analista obtenerPorId(long id) {
+		return em.find(Analista.class, id);
+	}
+
 	public List<Analista> obtenerPorNombreUsuario(String nombreUsuario) {
 		TypedQuery<Analista> query = em
 				.createQuery("SELECT a FROM Analista a WHERE a.nombreUsuario LIKE :nombreUsuario", Analista.class)

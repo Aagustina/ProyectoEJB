@@ -16,4 +16,6 @@ public interface TutoresBeanRemote {
 	List<Tutor> obtenerTodos();
 
 	List<Tutor> obtenerTodos(String filtro);
+
+	Tutor obtenerTutorPorId(long id);
 }
