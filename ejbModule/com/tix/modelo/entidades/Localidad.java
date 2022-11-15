@@ -33,7 +33,7 @@ public class Localidad implements Serializable {
 	@Column(name = "ID_LOCALIDAD")
 	private long idLocalidad;
 
-	@Column(nullable = false, length = 50, unique = true)
+	@Column(nullable = false, length = 50)
 	private String nombre;
 
 	@ManyToOne
