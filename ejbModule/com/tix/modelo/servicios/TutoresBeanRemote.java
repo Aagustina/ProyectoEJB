@@ -10,6 +10,8 @@ import com.tix.modelo.entidades.Tutor;
 @Remote
 public interface TutoresBeanRemote {
 	void registro(Tutor tutor) throws Exception;
+	
+	void editar(Tutor tutor) throws Exception;
 
 	List<Tutor> obtenerTutorPorNombreUsuario(String nombreUsuario);
 

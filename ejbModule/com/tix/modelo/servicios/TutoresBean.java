@@ -49,4 +49,10 @@ public class TutoresBean implements TutoresBeanRemote {
 	public Tutor obtenerTutorPorId(long id) {
 		return tutorDAO.obtenerPorId(id);
 	}
+
+	@Override
+	public void editar(Tutor tutor) throws Exception {
+		tutorDAO.actualizar(tutor);
+		
+	}
 }

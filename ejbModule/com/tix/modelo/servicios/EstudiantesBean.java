@@ -49,4 +49,10 @@ public class EstudiantesBean implements EstudiantesBeanRemote {
 		return estudianteDAO.obtenerPorId(id);
 	}
 
+	@Override
+	public void editar(Estudiante estudiante) throws Exception {
+		estudianteDAO.actualizar(estudiante);
+		
+	}
+
 }
