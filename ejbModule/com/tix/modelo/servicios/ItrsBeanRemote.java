@@ -11,6 +11,8 @@ public interface ItrsBeanRemote {
 
 	void registro(Itr itr);
 
+	void editar(Itr itr);
+
 	Itr obtenerItrPorId(Long idItr);
 
 	List<Itr> obtenerTodos();

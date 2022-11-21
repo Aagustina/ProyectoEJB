@@ -58,8 +58,16 @@ public class Itr implements Serializable {
 		this.idItr = idItr;
 	}
 
-	public int getEstado() {
-		return estado;
+	public String getEstado() {
+		switch (estado) {
+			case 0:
+				return "Sin Validar";
+			case 1:
+				return "Validado";
+			case 2:
+				return "Eliminado";
+		}
+		return "Sin Validar";
 	}
 
 	public void setEstado(int estado) {

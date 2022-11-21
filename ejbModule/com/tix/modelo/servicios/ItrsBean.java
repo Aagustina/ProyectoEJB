@@ -27,12 +27,16 @@ public class ItrsBean implements ItrsBeanRemote {
 	@Override
 	public void registro(Itr itr) {
 		itrDAO.crear(itr);
+	}
 
+	@Override
+	public void editar(Itr itr) {
+		itrDAO.actualizar(itr);
 	}
 
 	@Override
 	public Itr obtenerItrPorId(Long idItr) {
-		return itrDAO.obtenerLocalidadPorId(idItr);
+		return itrDAO.obtenerItrPorId(idItr);
 	}
 
 	@Override

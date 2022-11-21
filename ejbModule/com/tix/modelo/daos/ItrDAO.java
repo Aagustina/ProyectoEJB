@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import com.tix.modelo.entidades.Analista;
 import com.tix.modelo.entidades.Itr;
 import com.tix.modelo.entidades.Localidad;
+import com.tix.modelo.entidades.Tutor;
 
 /**
  * Session Bean implementation class ItrDAO
@@ -32,8 +33,13 @@ public class ItrDAO {
 		em.flush();
 	}
 
-	public Itr obtenerLocalidadPorId(Long idItr) {
-		return em.find(Itr.class, idItr);
+	public void actualizar(Itr itr) {
+		em.merge(itr);
+		em.flush();
+	}
+
+	public Itr obtenerItrPorId(long id) {
+		return em.find(Itr.class, id);
 	}
 
 	public List<Itr> obtenerTodos() {
