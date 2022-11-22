@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.criteria.CriteriaBuilder.Case;
 
 /**
  * Entity implementation class for Entity: Usuario
@@ -194,24 +195,21 @@ public abstract class Usuario implements Serializable {
 
 	public String getEstado() {
 		switch (estado) {
-			case 0:
+			case 0: {
 				return "Sin Validar";
-			case 1:
+			}
+			case 1: {
 				return "Validado";
-			case 2:
+			}
+			case 2: {
 				return "Eliminado";
+			}
 		}
-		return "Sin Validar";
+		return "";
 	}
 
-	public void setEstado(String estado) {
-		if (estado.equals("Sin Validar")) {
-			this.estado = 0;
-		} else if (estado.equals("Activo")) {
-			this.estado = 1;
-		} else {
-			this.estado = 2;
-		}
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 	public Itr getItr() {
