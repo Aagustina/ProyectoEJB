@@ -88,4 +88,18 @@ public class Justificacion implements Serializable {
 		this.infoAdjunta = infoAdjunta;
 	}
 
+	public String getEstadoRecConJus() {
+		return estadoRecConJus.getNombre();
+	}
+
+	public void setEstadoRecConJus(EstadoRecConJus estadoRecConJus) {
+		this.estadoRecConJus = estadoRecConJus;
+	}
+
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+	
+	
+
 }
