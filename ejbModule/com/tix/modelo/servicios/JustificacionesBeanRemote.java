@@ -14,4 +14,7 @@ public interface JustificacionesBeanRemote {
 	Justificacion obtenerJustificacionPorId(Long idJustificacion);
 
 	List<Justificacion> obtenerTodos();
+
+	void editar(Justificacion justificacion);
+
 }

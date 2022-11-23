@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import com.tix.modelo.daos.DepartamentoDAO;
 import com.tix.modelo.daos.JustificacionDAO;
 import com.tix.modelo.entidades.Departamento;
+import com.tix.modelo.entidades.Evento;
 import com.tix.modelo.entidades.Justificacion;
 
 /**
@@ -35,9 +36,15 @@ public class JustificacionesBean implements JustificacionesBeanRemote {
 	public Justificacion obtenerJustificacionPorId(Long idJustificacion) {
 		return justificacionDAO.obtenerJustificacionPorId(idJustificacion);
 	}
+	
+	@Override
+	public void editar(Justificacion justificacion) {
+		justificacionDAO.actualizar(justificacion);
+	}
 
 	@Override
 	public List<Justificacion> obtenerTodos() {
 		return justificacionDAO.obtenerTodos();
 	}
+	
 }

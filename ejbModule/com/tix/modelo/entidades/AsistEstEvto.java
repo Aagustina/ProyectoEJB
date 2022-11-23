@@ -67,4 +67,22 @@ public class AsistEstEvto implements Serializable {
 		this.calificacion = calificacion;
 	}
 
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+	
+	
+
 }
