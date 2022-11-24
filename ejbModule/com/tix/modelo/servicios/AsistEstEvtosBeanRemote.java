@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import com.tix.modelo.entidades.AsistEstEvto;
+import com.tix.modelo.entidades.Estudiante;
 import com.tix.modelo.entidades.Evento;
 import com.tix.modelo.entidades.Itr;
 
@@ -21,4 +22,5 @@ public interface AsistEstEvtosBeanRemote {
 	
 	List<AsistEstEvto> obtenerPorAsistencia(String estadoAsistencia);
 
+	public List<AsistEstEvto> obtenerPorEstyEvto(Estudiante estudiante);
 }

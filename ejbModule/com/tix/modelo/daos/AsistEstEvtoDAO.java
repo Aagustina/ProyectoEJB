@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import com.tix.modelo.entidades.Analista;
 import com.tix.modelo.entidades.AsistEstEvto;
+import com.tix.modelo.entidades.Estudiante;
 import com.tix.modelo.entidades.Evento;
 
 /**
@@ -50,6 +51,13 @@ public class AsistEstEvtoDAO {
 		TypedQuery<AsistEstEvto> query = em
 				.createQuery("SELECT a FROM AsistEstEvto a WHERE a.asistencia LIKE :estadoAsistencia", AsistEstEvto.class)
 				.setParameter("estadoAsistencia", estadoAsistencia);
+		return query.getResultList();
+	}
+	
+	public List<AsistEstEvto> obtenerPorEstyEvto(Estudiante estudiante) {
+		TypedQuery<AsistEstEvto> query = em
+				.createQuery("SELECT a FROM AsistEstEvto a WHERE a.estudiante LIKE :estudiante", AsistEstEvto.class)
+				.setParameter("estudiante", estudiante);
 		return query.getResultList();
 	}
 }

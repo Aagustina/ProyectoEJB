@@ -17,4 +17,5 @@ public interface AreasBeanRemote {
 
 	List<Area> obtenerTodos(String filtro);
 
+	
 }

@@ -112,9 +112,5 @@ public class Justificacion implements Serializable {
 		this.evento = evento;
 	}
 
-	@Override
-	public String toString() {
-		return detalle;
-	}
 
 }
