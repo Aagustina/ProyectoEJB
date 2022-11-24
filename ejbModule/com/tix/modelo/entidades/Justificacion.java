@@ -88,8 +88,8 @@ public class Justificacion implements Serializable {
 		this.infoAdjunta = infoAdjunta;
 	}
 
-	public String getEstadoRecConJus() {
-		return estadoRecConJus.getNombre();
+	public EstadoRecConJus getEstadoRecConJus() {
+		return estadoRecConJus;
 	}
 
 	public void setEstadoRecConJus(EstadoRecConJus estadoRecConJus) {
@@ -111,9 +111,10 @@ public class Justificacion implements Serializable {
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return detalle;
+	}
 
 }

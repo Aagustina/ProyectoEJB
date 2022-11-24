@@ -35,13 +35,13 @@ public class AccionJustificacion implements Serializable {
 
 	@Column(nullable = false)
 	private Timestamp fechahora;
-	
+
 	@ManyToOne
-	@JoinColumn(name="ID_ANALISTA")
+	@JoinColumn(name = "ID_ANALISTA")
 	private Analista analista;
 
 	@ManyToOne
-	@JoinColumn(name="ID_JUSTIFICACION")
+	@JoinColumn(name = "ID_JUSTIFICACION")
 	private Justificacion justificacion;
 
 	public long getIdAccJustificacion() {
@@ -66,6 +66,22 @@ public class AccionJustificacion implements Serializable {
 
 	public void setFechahora(Timestamp fechahora) {
 		this.fechahora = fechahora;
+	}
+
+	public Analista getAnalista() {
+		return analista;
+	}
+
+	public void setAnalista(Analista analista) {
+		this.analista = analista;
+	}
+
+	public Justificacion getJustificacion() {
+		return justificacion;
+	}
+
+	public void setJustificacion(Justificacion justificacion) {
+		this.justificacion = justificacion;
 	}
 
 }
