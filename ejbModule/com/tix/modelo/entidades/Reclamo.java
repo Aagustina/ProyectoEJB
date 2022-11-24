@@ -162,4 +162,14 @@ public class Reclamo implements Serializable {
 		this.creditos = creditos;
 	}
 
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
+	
+	
+
 }
