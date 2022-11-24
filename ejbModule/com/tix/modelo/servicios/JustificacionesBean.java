@@ -31,6 +31,11 @@ public class JustificacionesBean implements JustificacionesBeanRemote {
 	public void registro(Justificacion justificacion) {
 		justificacionDAO.crear(justificacion);
 	}
+	
+	@Override
+	public void borrar(Long id) throws Exception {
+		justificacionDAO.borrar(id);
+	}
 
 	@Override
 	public Justificacion obtenerJustificacionPorId(Long idJustificacion) {

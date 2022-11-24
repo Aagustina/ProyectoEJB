@@ -9,6 +9,7 @@ import com.tix.modelo.daos.AsistEstEvtoDAO;
 import com.tix.modelo.daos.EventoDAO;
 import com.tix.modelo.daos.ItrDAO;
 import com.tix.modelo.entidades.AsistEstEvto;
+import com.tix.modelo.entidades.Estudiante;
 import com.tix.modelo.entidades.Evento;
 import com.tix.modelo.entidades.Itr;
 
@@ -48,8 +49,13 @@ public class AsistEstEvtosBean implements AsistEstEvtosBeanRemote {
 		return asistEstEvtoDAO.obtenerTodos();
 	}
 	
+	@Override
 	public List<AsistEstEvto> obtenerPorAsistencia(String estadoAsistencia) {
 		return asistEstEvtoDAO.obtenerPorAsistencia(estadoAsistencia);
+	}
+	
+	public List<AsistEstEvto> obtenerPorEstyEvto(Estudiante estudiante) {
+		return asistEstEvtoDAO.obtenerPorEstyEvto(estudiante);
 	}
 
 

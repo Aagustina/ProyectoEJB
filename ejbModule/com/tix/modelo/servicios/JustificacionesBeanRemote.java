@@ -16,5 +16,7 @@ public interface JustificacionesBeanRemote {
 	List<Justificacion> obtenerTodos();
 
 	void editar(Justificacion justificacion);
+	
+	void borrar(Long id) throws Exception;
 
 }
