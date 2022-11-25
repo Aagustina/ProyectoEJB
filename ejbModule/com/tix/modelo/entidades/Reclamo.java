@@ -169,6 +169,23 @@ public class Reclamo implements Serializable {
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
 	}
+
+	@Override
+	public String toString() {
+		return "ID: " + idReclamo + '\n'
+				+ "Estado: " + estadoRecConJus.getNombre() + '\n'
+				+ "Asunto: " + asunto + '\n' 
+				+ "Detalle: " + detalle + '\n'
+				+ "Estudiante: " + estudiante.getNombre1() + " " + estudiante.getApellido1() + '\n'
+				+ "Nombre Actividad: " + nomActividad + '\n'
+				+ "Nombre Evento: " + nomEvento + '\n'
+				+ "Créditos: " + creditos + '\n'
+				+ "Semestre: " + semestre + '\n'
+				+ "Fecha: " + fecha + '\n'
+				+ "Docente: " + docente;
+	}
+	
+	
 	
 	
 
